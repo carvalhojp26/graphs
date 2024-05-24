@@ -190,3 +190,55 @@ void findPaths(Graph *g, int start, int end) {
     free(visited);
     free(path);
 }
+
+void findMaxCostPath(Graph *g) {
+    int maxCost = 0;
+    int *bestPath = malloc(g->numVertices * sizeof(int));
+    int bestPathLength = 0;
+
+    for (int start = 0; start < g->numVertices; start++) {
+        for (int end = 0; end < g->numVertices; end++) {
+            if (start != end) {
+                bool *visited = malloc(g->numVertices * sizeof(bool));
+                int *path = malloc(g->numVertices * sizeof(int));
+                for (int i = 0; i < g->numVertices; i++) {
+                    visited[i] = false;
+                }
+                dfsMaxCost(g, start, end, visited, path, 0, 0, &maxCost, bestPath, &bestPathLength);
+                free(visited);
+                free(path);
+            }
+        }
+    }
+
+    printf("Caminho de maior custo: ");
+    for (int i = 0; i < bestPathLength; i++) {
+        printf("%d ", bestPath[i]);
+    }
+    printf(" | Custo: %d\n", maxCost);
+
+    free(bestPath);
+}
+
+void dfsMaxCost(Graph *g, int start, int end, bool *visited, int *path, int pathIndex, int currentSum, int *maxCost, int *bestPath, int *bestPathLength) {
+    visited[start] = true;
+    path[pathIndex] = start;
+    pathIndex++;
+
+    if (start == end) {
+        if (currentSum > *maxCost) {
+            *maxCost = currentSum;
+            *bestPathLength = pathIndex;
+            memcpy(bestPath, path, pathIndex * sizeof(int));
+        }
+    } else {
+        for (int i = 0; i < g->numVertices; i++) {
+            if (g->adjMatrix[start][i] != 0 && !visited[i]) {
+                dfsMaxCost(g, i, end, visited, path, pathIndex, currentSum + g->adjMatrix[start][i], maxCost, bestPath, bestPathLength);
+            }
+        }
+    }
+
+    pathIndex--;
+    visited[start] = false;
+}

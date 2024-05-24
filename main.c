@@ -73,7 +73,9 @@ int main() {
     printGraph(&graph);
 
     printf("Caminhos do vértice 0 ao vértice 4:\n");
-    findPaths(&graph, 0, 4);
+    findPaths(&graph, 1, 2);
+
+    findMaxCostPath(&graph);
 
     freeGraph(&graph);
     return 0;  // Finaliza a execução com sucesso
