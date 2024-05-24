@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "utils.h"
+#include "types.h"
+#include "logic.h"
 
 int main() {
     const char *filename = "data.txt";  // Nome do arquivo contendo a matriz de adjacência
