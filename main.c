@@ -1,3 +1,13 @@
+/**
+ * @file main.c
+ * @author Joao Paulo Carvalho (27991)
+ * @brief
+ * @version 0.1
+ * @date 2024-05-25
+ * @copyright Copyright (c) 2020
+ *
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
