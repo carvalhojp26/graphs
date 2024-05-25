@@ -1,3 +1,13 @@
+/**
+ * @file logic.c
+ * @author Joao Paulo Carvalho (27991)
+ * @brief
+ * @version 0.1
+ * @date 2024-05-24
+ * @copyright Copyright (c) 2020
+ *
+ */
+
 #include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -27,7 +37,7 @@ int dfs(Graph *g, int start, int end, bool *visited, int *path, int pathIndex, i
     pathIndex--;
     visited[start] = false;
 
-    return 1;
+    return 0;
 }
 
 int findPaths(Graph *g, int start, int end) {
@@ -40,7 +50,7 @@ int findPaths(Graph *g, int start, int end) {
     free(visited);
     free(path);
 
-    return 1;
+    return 0;
 }
 
 int findMaxCostPath(Graph *g) {
@@ -71,7 +81,7 @@ int findMaxCostPath(Graph *g) {
 
     free(bestPath);
 
-    return 1;
+    return 0;
 }
 
 int dfsMaxCost(Graph *g, int start, int end, bool *visited, int *path, int pathIndex, int currentSum, int *maxCost, int *bestPath, int *bestPathLength) {
@@ -96,5 +106,5 @@ int dfsMaxCost(Graph *g, int start, int end, bool *visited, int *path, int pathI
     pathIndex--;
     visited[start] = false;
 
-    return 1;
+    return 0;
 }

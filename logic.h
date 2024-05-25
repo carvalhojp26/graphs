@@ -1,3 +1,13 @@
+/**
+ * @file logic.h
+ * @author Joao Paulo Carvalho (27991)
+ * @brief
+ * @version 0.1
+ * @date 2024-05-24
+ * @copyright Copyright (c) 2020
+ *
+ */
+
 #ifndef LOGIC_H
 #define LOGIC_H
 

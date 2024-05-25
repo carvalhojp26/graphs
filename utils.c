@@ -1,3 +1,13 @@
+/**
+ * @file utils.c
+ * @author Joao Paulo Carvalho (27991)
+ * @brief
+ * @version 0.1
+ * @date 2024-05-24
+ * @copyright Copyright (c) 2020
+ *
+ */
+
 #include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -65,19 +75,18 @@ int loadGraphFromFile(Graph *g, const char *filename) {
 }
 
 int addVertex(Graph *g) {
-    // Aumenta o número de vértices
     g->numVertices++;
 
     // Realoca a matriz de adjacência para acomodar o novo vértice
     g->adjMatrix = realloc(g->adjMatrix, g->numVertices * sizeof(int*));
     if (g->adjMatrix == NULL) {
-        return 1; // Falha na realocação
+        return 1;
     }
 
     // Aloca e inicializa a nova linha com zeros
     g->adjMatrix[g->numVertices - 1] = calloc(g->numColumns, sizeof(int));
     if (g->adjMatrix[g->numVertices - 1] == NULL) {
-        return 1; // Falha na alocação
+        return 1;
     }
 
     // Realoca a matriz de adjacência para todas as colunas existentes
@@ -86,7 +95,7 @@ int addVertex(Graph *g) {
         g->adjMatrix[i][g->numVertices - 1] = 0; // Inicializa a nova coluna com zero
     }
 
-    return 0; // Sucesso
+    return 0;
 }
 
 int printGraph(Graph *g) {
@@ -116,10 +125,9 @@ int freeGraph(Graph *g) {
 
 int removeVertex(Graph *g, int vertex) {
     if (vertex < 0 || vertex >= g->numVertices) {
-        return 1;  // Falha, índice do vértice fora do intervalo permitido
+        return 1;
     }
 
-    // Libera a memória da linha correspondente ao vértice
     free(g->adjMatrix[vertex]);
 
     // Desloca todas as linhas seguintes para cima para preencher o espaço vazio
@@ -133,26 +141,25 @@ int removeVertex(Graph *g, int vertex) {
         return 1;
     }
 
-    // Decrementa o número de vértices
     g->numVertices--;
 
-    return 1;  // Sucesso
+    return 0;
 }
 
 int removeEdge(Graph *g, int vertex1, int vertex2) {
     if (vertex1 < 0 || vertex1 >= g->numVertices || vertex2 < 0 || vertex2 >= g->numVertices) {
-        return 1;  // Falha, índice do vértice fora do intervalo permitido
+        return 1;
     }
 
     g->adjMatrix[vertex1][vertex2] = 0;
-    return 0;  // Sucesso
+    return 0;
 }
 
 int addEdge(Graph *g, int vertex1, int vertex2, int weight) {
     if (vertex1 < 0 || vertex1 >= g->numVertices || vertex2 < 0 || vertex2 >= g->numVertices) {
-        return 1;  // Falha, índice do vértice fora do intervalo permitido
+        return 1;
     }
 
     g->adjMatrix[vertex1][vertex2] = weight;
-    return 0;  // Sucesso
+    return 0;
 }
